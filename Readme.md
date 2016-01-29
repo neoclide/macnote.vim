@@ -57,6 +57,13 @@ highlight, you can install them via:
 
   _There is `open` `delete` `add` action for unite note source_
 
+  [unite.vim](https://github.com/Shougo/unite.vim) has support for sort by file
+  modify time, you can make your lastest changed note comes first by:
+
+        call unite#custom#source(
+          \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
+          \)
+
 ## Configurations
 
 All configurations are optional.
