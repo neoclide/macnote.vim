@@ -20,6 +20,11 @@ To enable async markdown parse, install
 
     Plugin 'Shougo/vimproc.vim'
 
+`misaka` and `pygments` is used for high preformance markdown parse and syntax
+highlight, you can install them via:
+
+    pip install pygments misaka
+
 ## Usage
 
 * Create or edit note:
