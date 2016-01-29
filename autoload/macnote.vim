@@ -20,7 +20,6 @@ function! macnote#preview(...) abort
         \. dest, s:chrome_load . '  file://' . dest]
   let execute_file = tempname()
   call writefile(commands, execute_file)
-  let g:exe = execute_file
   if exists('*vimproc#system')
     call vimproc#system('bash ' . execute_file . ' &')
   else
@@ -30,7 +29,6 @@ endfunction
 
 function! macnote#closeTab(buf)
   let dest = getbufvar(a:buf, 'macnote_desc')
-  let g:dest = dest
   if empty(dest) | return | endif
   call s:system(s:chrome_close . ' file://' . dest)
 endfunction

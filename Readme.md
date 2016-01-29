@@ -1,53 +1,70 @@
-# Macdown.vim
+# Macnote.vim
 
-A simplified and flexible markdown solution for vim user on Mac.
-
-Using applescript instead of a server to enhance the exprience of live preview.
+Simplified and friendly note management plugin.
 
 ## Basic features
 
+* Write note with markdown and yaml as frontmatter.
 * Preview in Chrome with range and auto reload support.
-* Async markdown parse.
-* Build in unite source, find and search your notes become much easier.
-* You can publish genereated html with just scp command.
+* Create, delete and search note with command.
+* Unite source for easier note management.
 
 ## Install
 
 Take [vundle](https://github.com/VundleVim/Vundle.vim) as example:
 
-    Plugin 'chemzqm/macdown.vim'
+    Plugin 'chemzqm/macnote.vim'
 
-[vimproc.vim](https: //github.com/Shougo/vimproc.vim) is needed for processing
-  markdown files in async.
+To enable async markdown parse, install
+[vimproc.vim](https://github.com/Shougo/vimproc.vim)
 
     Plugin 'Shougo/vimproc.vim'
 
 ## Usage
 
-To preview current markdown file, type:
+* Create or edit note:
 
-    :Preview
+        :Note {path}
 
-Preview with range, eg:
+  _{path} could include folder, use `<tab>` for auto complete_
 
-    :1,10Preview
+* Delete note;
 
-Or visual select a range, and use:
+        :NoteDelete {path}
 
-    :'<,'>Preview
+* Search note:
 
-To toggle auto preview for current file, type:
+        :[bang]NoteSearch {path}
 
-    :PreviewAuto
+* Preview current note:
 
-The chrome page would be refreshed on CursorHold and BufWrite
+        :Preview
 
-## Configuration
+* Auto reload preview on file save and cursor hold:
 
-You can configure almost anything, see:
-[doc/macdown.txt](https://github.com/chemzqm/macdown.vim/blob/master/doc/macdown.txt)
+        :PreviewAuto
 
+  _Chrome tab would be close on buffer delete_
 
-## TODO
+* Open unite source for note:
 
-* Scrollbind for vim and Chrome
+        :Unite note
+
+  _There is `open` `delete` `add` action for unite note source_
+
+## Configurations
+
+All configurations are optional.
+
+* `g:macnote_note_directory` could be used to set root directory of notes,
+  defaults: `~/Documents/notes`
+* `g:note_cwindow_open` could be set to `1` if you want open quickfix list after
+  search.
+* `g:note_unite_quickfix` if you have unite quickfix source, set it to `1` to
+  open unite quickfix source after search.
+* `g:unite_note_ag_opts` is used for set options for ag, which is ued for file
+  search in unite note, default value is `--nocolor --nogroup -g ''`
+
+## License
+
+MIT
