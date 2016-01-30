@@ -141,8 +141,8 @@ augroup macnote
   autocmd filetype note call s:InitNote()
   autocmd VimEnter * call s:OnVimEnter()
   autocmd VimLeave * call s:OnVimLeave()
-  execute 'autocmd BufDelete '.s:note_dir.'/* call macnote#closeTab(+expand(''<abuf>''))'
-  execute 'autocmd BufWrite '.s:note_dir.'/* call s:Preview()'
+  autocmd BufDelete * call macnote#closeTab(+expand('<abuf>'))
+  autocmd BufWrite  * call s:Preview()
 augroup end
 
 command! -nargs=1 -complete=customlist,s:NoteComplete Note :call s:EditNote(<f-args>)
