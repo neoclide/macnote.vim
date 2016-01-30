@@ -5,6 +5,7 @@ let did_macnote_loaded = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:sample_file = expand('<sfile>:h:h').'/template/sample'
 let s:note_dir = get(g:, 'macnote_note_directory', expand('~').'/Documents/notes')
 
 function! s:EditNote(name)
@@ -25,7 +26,14 @@ function! s:EditNote(name)
           call mkdir(dir, 'p')
         endif
       endif
+      let newfile = !filereadable(path)
+      let g:sample = s:sample_file
       execute 'edit ' . path
+      if newfile && filereadable(s:sample_file)
+        let lines = readfile(s:sample_file)
+        call setline(1, lines[0])
+        call append(1, lines[1:])
+      endif
     endif
   endif
 endfunction
