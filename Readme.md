@@ -5,6 +5,7 @@ Simplified and friendly note management plugin.
 ## Basic features
 
 * Write note with markdown and yaml as frontmatter.
+* All extended markdown syntax included, visit [sample page](https://chemzqm.me/sample).
 * Preview in Chrome with range and auto reload support.
 * Create, delete and search note with command.
 * Unite source for easier note management.
