@@ -27,7 +27,6 @@ function! s:EditNote(name)
         endif
       endif
       let newfile = !filereadable(path)
-      let g:sample = s:sample_file
       execute 'edit ' . path
       if newfile && filereadable(s:sample_file)
         let lines = readfile(s:sample_file)
@@ -130,9 +129,9 @@ endfunction
 
 function! s:SearchNote(word, bang)
   execute 'silent grep'.a:bang.' '.a:word.' '.s:note_dir
-  if get(g:, 'note_unite_quickfix', 0) == 1
+  if get(g:, 'macnote_unite_quickfix', 0) == 1
     execute 'Unite -buffer-name=quickfix  quickfix'
-  elseif get(g:, 'note_cwindow_open', 0) == 1
+  elseif get(g:, 'macnote_cwindow_open', 1) == 1
     cwindow
   endif
 endfunction
