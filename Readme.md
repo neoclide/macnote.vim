@@ -78,6 +78,8 @@ All configurations are optional.
 * `g:unite_note_ag_opts` is used for set options for ag, which is ued for file
   search in unite note, default value is `--nocolor --nogroup -g ''`
 
+Use `:h macnote` inside vim to get more info.
+
 ## License
 
 MIT
