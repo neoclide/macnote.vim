@@ -32,7 +32,11 @@ function! s:source.action_table.delete.func(candidate)
   let name = fnamemodify(a:candidate.action__path, ':t')
   if input('Remove note '.name.' ? [y/n] ', 'y') =~? 'y'
     if bufnr(a:candidate.action__path) != -1
-      execute 'bwipeout '. a:candidate.action__path
+      if exists(':Bdelete')
+        execute 'Bdelete '. a:candidate.action__path
+      else
+        execute 'bwipeout '. a:candidate.action__path
+      endif
     endif
     let output = system('rm -f ' . a:candidate.action__path)
     if v:shell_error && output !=# ""
