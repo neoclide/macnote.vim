@@ -1,0 +1,182 @@
+*macnote.txt*		manage and preview notes in Chrome on mac
+
+Author		: Qiming Zhao <chemzqm@gmail.com>
+Version		: 0.1.0
+Last Change	: Jan 31, 2016
+
+License : MIT license {{{
+
+  Copyright (c) 2016 chemzqm@gmail.com
+
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+}}}
+
+==============================================================================
+CONTENTS				*macnote-contents*
+
+INTRODUCTION		|macnote-introduction|
+INSTALLATION		|macnote-installation|
+REQUIREMENT		|macnote-requirement|
+INTERFACE		|macnote-interface|
+  COMMANDS			|macnote-commands|
+  VARIABLES			|macnote-variables|
+  ACTIONS			|macnote-actions|
+CHANGELOG		|macnote-changelog|
+
+==============================================================================
+INTRODUCTION				*macnote-introduction*
+
+Macnote is a tiny notes management plugin, it helps you manage notes plus
+preview the markdown content in Chrome browser (by using applescript).
+
+Macnote using Python module |Misaka| for markdown pasre, it's very fast while
+feature rich, all features include 'tables', 'strikethrough', 'math',
+'smartypant' 'fencedcode', 'footnotes', 'autolink' are enabled.
+
+Macnote make use of front-matter (see https://hexo.io/docs/front-matter.html),
+so you can write extra infomation at the front of file, and make use them
+later, for eg: publish it to remote server.
+
+==============================================================================
+INSTALLATION				*macnote-installation*
+
+Install with your favorite plugin managers like NeoBundle/Plugin/Plug
+>
+>
+	NeoBundle 'chemzqm/macnote.vim'
+	Plugin 'chemzqm/macnote.vim'
+	Plug 'chemzqm/macnote.vim'
+
+|vimproc| is optional, it makes the markdown parse operation at background it
+could be installed via |vim-plug|:
+
+	Plug 'Shougo/vimproc.vim',{'do', 'yes\|make'}
+
+==============================================================================
+REQUIREMENT				*macnote-requirement*
+
+Nodejs is used for template and yaml parse, you can get it from
+https://nodejs.org (because I'm not good at python :( )
+
+Install the python dependencies via command:
+
+	pip install misaka pygments
+
+If you don't have pip command, you can use:
+
+	sudo easy_install pip
+
+to install it.
+
+==============================================================================
+INTERFACE				*macnote-interface*
+
+You can preview the generated html with |Preview| and |PreviewAuto| commands.
+Simple managment commands including |Note|, |NoteDelete| and |NoteSearch|
+
+------------------------------------------------------------------------------
+COMMANDS 				*macnote-commands*
+
+:[range]Preview				*:Preview*
+
+		Preview generated html file in Chrome, no need to manually
+		start Chrome or open the url. You can optionally select a
+		range for |:Preview|
+
+:PreviewAuto				*:PreviewAuto*
+
+		Enable auto reload preview for current buffer, the page in
+		Chrome would reload whenever CursorHold and BufWrite event
+		happens.
+
+		note: the tab in Chrome would be closed when the buffer get
+		removed or vim exit, no need to manually close them.
+
+:Note {path}				*:Note*
+
+		Open/Create a note at path, the directory inside {path} would
+		be automatically created.
+
+		You can use <tab> for completion file/directory names.
+
+:NoteDelete {path}			*:NoteDelete*
+
+		Remove a note at path, since rm command is used, you would be
+		prompted to confirm the remove action.
+
+:NoteSearch {words}			*:NoteSearch*
+
+		Search your notes for {words}, it's using vim's builtin
+		|:grep| command, you can use 'grep' option to tweak the
+		behaviour, for eg: if you would like to use ag:
+>
+		  set grepprg=ag\ --vimgrep\ $*
+		  set grepformat=%f:%l:%c:%m
+
+:Unite note				*:Unite-note*
+
+		Unite source for note management, you can make the notes sort
+		by modifytime by setting:
+>
+		call unite#custom#source(
+		  \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
+		  \)
+<
+		See |macnote-actions| below for actions.
+
+------------------------------------------------------------------------------
+VARIABLES 				*macnote-variables*
+
+					*g:macnote_note_directory*
+Default: '~/Documents/notes'
+
+	The root folder for all your notes, you can't have multiply note
+	folders, but you can have arbitrary directory nested.
+
+					*g:macnote_cwindow_open*
+Default: 1
+
+	You can set this variable to 0 to disalbe open |cwindow| after
+	|:NoteSearch|
+
+					*g:unite_note_ag_opts*
+Default: "--nocolor --nogroup -g ''"
+
+	If you have ag installed, unite note source would use ag for file
+	search, you can use this option to alter ag behaviour.
+
+------------------------------------------------------------------------------
+ACTIONS 				*macnote-actions*
+
+	open	Default action to open selected note.
+	delete	Remove note
+	new	Create new note
+
+Unite note candidates are file kind, see |unite| for more actions.
+
+==============================================================================
+CHANGELOG				 *macnote-changelog*
+
+0.1.0	Jan 31, 2016
+	- init.
+
+==============================================================================
+
+vim:tw=78:ts=8:sts=8:ft=help:noet:fen:fdm=marker:
