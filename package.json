@@ -6,7 +6,5 @@
   "scripts": {},
   "author": "chemzqm@gmail.com",
   "license": "MIT",
-  "dependencies": {
-    "highlight.js": "^9.1.0"
-  }
+  "dependencies": {}
 }
