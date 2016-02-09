@@ -3,7 +3,9 @@ title: sample
 An h1 header
 ============
 
+
 Paragraphs are separated by a blank line.
+<!-- comment -->
 
 2nd paragraph. *Italic*, **bold**, `code`,  and ~~strike through~~. Itemized lists
 look like:
