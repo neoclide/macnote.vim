@@ -20,7 +20,11 @@ function! macnote#preview(...) abort
         \. dest, s:chrome_load . '  file://' . dest]
   let execute_file = tempname()
   call writefile(commands, execute_file)
-  if exists('*vimproc#system')
+  if exists('*jobstart')
+    call jobstart('bash '. execute_file)
+  elseif exists('*job_start')
+    call job_start('bash '. execute_file)
+  elseif exists('*vimproc#system')
     call vimproc#system('bash ' . execute_file . ' &')
   else
     call s:system('bash ' . execute_file)

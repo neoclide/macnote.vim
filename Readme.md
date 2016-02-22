@@ -9,6 +9,7 @@ Simplified and friendly note management plugin.
 * Preview in Chrome with range and auto reload support.
 * Create, delete and search note with command.
 * Unite source for easier note management.
+* Support both neovim/vim job-control for async parsing.
 
 ## Install
 
@@ -16,15 +17,17 @@ Take [vundle](https://github.com/VundleVim/Vundle.vim) as example:
 
     Plugin 'chemzqm/macnote.vim'
 
-To enable async markdown parse, install
-[vimproc.vim](https://github.com/Shougo/vimproc.vim)
-
-    Plugin 'Shougo/vimproc.vim'
-
 `misaka` and `pygments` is used for high preformance markdown parse and syntax
 highlight, you can install them via:
 
     pip install pygments misaka
+
+If your vim doesn't support, you can install
+[vimproc.vim](https://github.com/Shougo/vimproc.vim)
+
+    Plugin 'Shougo/vimproc.vim'
+
+to do async job.
 
 ## Usage
 

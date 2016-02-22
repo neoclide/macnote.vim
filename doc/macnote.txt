@@ -8,7 +8,7 @@
   |__|  |__| /__/     \__\ \______||__| \__|  \______/      |__|     |_______| ~
 
 Author		: Qiming Zhao <chemzqm@gmail.com>
-Version		: 0.1.0
+Version		: 0.1.1
 Last Change	: Jan 31, 2016
 
 License : MIT license {{{
@@ -71,8 +71,8 @@ Install with your favorite plugin managers like NeoBundle/Plugin/Plug
 	Plugin 'chemzqm/macnote.vim'
 	Plug 'chemzqm/macnote.vim'
 
-|vimproc| is optional, it makes the markdown parse operation at background it
-could be installed via |vim-plug|:
+If your vim don't support |job-control|, |vimproc| is required to parse
+markdown async, it could be installed via |vim-plug| like:
 
 	Plug 'Shougo/vimproc.vim',{'do', 'yes\|make'}
 
@@ -180,6 +180,9 @@ Unite note candidates are file kind, see |unite| for more actions.
 
 ==============================================================================
 CHANGELOG				 *macnote-changelog*
+
+0.1.1	Feb 23, 2016
+	- use job-control when possible.
 
 0.1.0	Jan 31, 2016
 	- init.
