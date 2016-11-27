@@ -6,6 +6,7 @@ import re
 import sys
 import os
 import misaka as m
+import urllib
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
@@ -21,6 +22,13 @@ class HighlighterRenderer(m.HtmlRenderer):
 
     def normal_text(self, text):
         return m.smartypants(text)
+
+    def header(self, content, level):
+        id=urllib.quote(content.encode('utf8'), safe='~()*!.\'')
+        return str('<h{level} id="{id}">{content}</h{level}>').format(
+                id=id,
+                level=level,
+                content=content)
 
     def blockcode(self, text, lang):
         lang = 'sh'
