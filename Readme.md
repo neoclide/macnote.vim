@@ -1,5 +1,9 @@
 # Macnote.vim
 
+[![](http://img.shields.io/github/issues/neoclide/macnote.vim.svg)](https://github.com/neoclide/macnote.vim/issues)
+[![](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![](https://img.shields.io/badge/doc-%3Ah%20macnote.txt-red.svg)](doc/macnote.txt)
+
 Simplified and friendly note management plugin.
 
 ## Basic features
@@ -82,7 +86,3 @@ All configurations are optional.
   search in unite note, default value is `--nocolor --nogroup -g ''`
 
 Use `:h macnote` inside vim to get more info.
-
-## License
-
-MIT
