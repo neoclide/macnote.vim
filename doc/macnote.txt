@@ -8,12 +8,12 @@
   |__|  |__| /__/     \__\ \______||__| \__|  \______/      |__|     |_______| ~
 
 Author		: Qiming Zhao <chemzqm@gmail.com>
-Version		: 0.1.1
-Last Change	: Jan 31, 2016
+Version		: 1.0.0
+Last Change	: 2018-05-03
 
 License : MIT license {{{
 
-  Copyright (c) 2016 chemzqm@gmail.com
+  Copyright (c) 2018 chemzqm@gmail.com
 
   Permission is hereby granted, free of charge, to any person obtaining
   a copy of this software and associated documentation files (the
@@ -137,16 +137,11 @@ COMMANDS 				*macnote-commands*
 		  set grepprg=ag\ --vimgrep\ $*
 		  set grepformat=%f:%l:%c:%m
 
-:Unite note				*:Unite-note*
+:Denite note				*:Denite-note*
 
-		Unite source for note management, you can make the notes sort
-		by modifytime by setting:
->
-		call unite#custom#source(
-		  \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
-		  \)
-<
-		See |macnote-actions| below for actions.
+		Denite source for note management.
+
+		See |macnote-actions| for actions.
 
 ------------------------------------------------------------------------------
 VARIABLES 				*macnote-variables*
@@ -163,12 +158,6 @@ Default: 1
 	You can set this variable to 0 to disalbe open |cwindow| after
 	|:NoteSearch|
 
-					*g:unite_note_ag_opts*
-Default: "--nocolor --nogroup -g ''"
-
-	If you have ag installed, unite note source would use ag for file
-	search, you can use this option to alter ag behaviour.
-
 ------------------------------------------------------------------------------
 ACTIONS 				*macnote-actions*
 
@@ -176,10 +165,13 @@ ACTIONS 				*macnote-actions*
 	delete	Remove note
 	new	Create new note
 
-Unite note candidates are file kind, see |unite| for more actions.
+Denite note candidates are file kind, see |denite-kind-file| for more actions.
 
 ==============================================================================
 CHANGELOG				 *macnote-changelog*
+
+1.0.0	Fri 2, 2018
+	- Use denite
 
 0.1.1	Feb 23, 2016
 	- use job-control when possible.

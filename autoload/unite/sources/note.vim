@@ -33,7 +33,7 @@ function! s:source.action_table.delete.func(candidate)
   if input('Remove note '.name.' ? [y/n] ', 'y') =~? 'y'
     if bufnr(a:candidate.action__path) != -1
       if exists(':Bdelete')
-        execute 'Bdelete '. a:candidate.action__path
+        execute 'bwipeout '. a:candidate.action__path
       else
         execute 'bwipeout '. a:candidate.action__path
       endif

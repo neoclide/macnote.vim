@@ -12,7 +12,7 @@ Simplified and friendly note management plugin.
 * All extended markdown syntax included, visit [sample page](https://chemzqm.me/sample).
 * Preview in Chrome with range and auto reload support.
 * Create, delete and search note with command.
-* Unite source for easier note management.
+* Denite source for easier note management.
 * Support both neovim/vim job-control for async parsing.
 
 ## Install
@@ -37,40 +37,33 @@ to do async job.
 
 * Create or edit note:
 
-        :Note {path}
+      :Note {path}
 
   _{path} could include folder, use `<tab>` for auto complete_
 
 * Delete note;
 
-        :NoteDelete {path}
+      :NoteDelete {path}
 
 * Search note:
 
-        :[bang]NoteSearch {path}
+      :[bang]NoteSearch {path}
 
 * Preview current note:
 
-        :Preview
+      :Preview
 
 * Auto reload preview on file save and cursor hold:
 
-        :PreviewAuto
+      :PreviewAuto
 
   _Chrome tab would be close on buffer delete_
 
-* Open unite source for note:
+* Open Denite source for note:
 
-        :Unite note
+      Denite note
 
-  _There is `open` `delete` `add` action for unite note source_
-
-  [unite.vim](https://github.com/Shougo/unite.vim) has support for sort by file
-  modify time, you can make your lastest changed note comes first by:
-
-        call unite#custom#source(
-          \  'note', 'sorters', ['sorter_ftime', 'sorter_reverse']
-          \)
+  _There are `open` `delete` `add` actions for denite note source_
 
 ## Configurations
 
@@ -80,9 +73,11 @@ All configurations are optional.
   defaults: `~/Documents/notes`
 * `g:note_cwindow_open` could be set to `1` if you want open quickfix list after
   search.
-* `g:note_unite_quickfix` if you have unite quickfix source, set it to `1` to
-  open unite quickfix source after search.
-* `g:unite_note_ag_opts` is used for set options for ag, which is ued for file
-  search in unite note, default value is `--nocolor --nogroup -g ''`
+* `g:note_denite_quickfix` if you have [denite quickfix source](https://github.com/neoclide/denite-extra/blob/master/rplugin/python3/denite/source/quickfix.py),
+  set it to `1` to open denite quickfix source after search.
 
 Use `:h macnote` inside vim to get more info.
+
+## LICENSE
+
+MIT

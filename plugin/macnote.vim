@@ -130,8 +130,8 @@ endfunction
 function! s:SearchNote(word, bang)
   let g:grep_command = 'grep'.a:bang.' '.a:word.' '.s:note_dir
   execute 'silent '.g:grep_command
-  if get(g:, 'macnote_unite_quickfix', 0) == 1
-    execute 'Unite -buffer-name=quickfix  quickfix'
+  if get(g:, 'macnote_denite_quickfix', 0) == 1
+    execute 'Denite -mode=normal  quickfix'
   elseif get(g:, 'macnote_cwindow_open', 1) == 1
     cwindow
   endif
